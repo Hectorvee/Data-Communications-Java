@@ -1,0 +1,10 @@
+Sample Data for SMTP Attachment Test
+
+This is a test file to verify the attachment feature in SMTP.
+Here you can include any text data you want to test with.
+
+- Line 1
+- Line 2
+- Line 3
+
+End of file.
