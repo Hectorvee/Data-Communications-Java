@@ -106,3 +106,4 @@ This repository is licensed under the [MIT License](LICENSE).
 For any questions or further information, please contact:
 
 **Hector Vukosi Mathonsi**
+- **Email:** [vukosi1632@gmail.com]
