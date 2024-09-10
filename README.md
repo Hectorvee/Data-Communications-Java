@@ -54,14 +54,6 @@ Projects in this folder focus on peer-to-peer file sharing using the UDP (User D
 - Handling file transfer and integrity
 - Managing peer-to-peer communication
 
-### 7. **Enhancing FireworkDisplay with Particle Systems and JavaFX GUI**
-
-While primarily related to GUI and OOP, this folder includes enhancements to the FireworkDisplay project with particle systems and JavaFX GUI features. It covers:
-
-- Integrating particle systems for dynamic visual effects
-- Enhancing the FireworkDisplay application with modern JavaFX features
-- Implementing simulation and animation features
-
 ## Getting Started
 
 To get started with the projects in this repository:
