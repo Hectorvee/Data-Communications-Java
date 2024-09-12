@@ -54,6 +54,16 @@ Projects in this folder focus on peer-to-peer file sharing using the UDP (User D
 - Handling file transfer and integrity
 - Managing peer-to-peer communication
 
+### 7. **BUKA Protocol - PDF File Downloader**
+
+This folder contains a project that implements a PDF file downloader using the custom BUKA protocol. Key aspects include:
+
+- Client-server communication over port 2018
+- Client login authentication using the `AUTH` command
+- Listing available PDF files (`LIST`) and downloading them by ID (`PDFRET`)
+- Server-side file management and multi-client handling
+- User interface for client interactions (BUKAClientFrame)
+
 ## Getting Started
 
 To get started with the projects in this repository:
