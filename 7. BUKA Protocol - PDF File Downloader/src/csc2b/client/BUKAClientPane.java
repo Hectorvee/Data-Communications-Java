@@ -77,7 +77,7 @@ public class BUKAClientPane extends GridPane {
 
     private void login() {
         String command = nameField.getText().trim() + " " + passField.getText().trim();
-        String response = clientHandler.sendCommand(command);
+        String response = clientHandler.sendCommand("AUTH " + command);
 
         String statusCode = response.split(" ")[0];
         if (statusCode.equals("200")) isLogin = true;
@@ -100,9 +100,9 @@ public class BUKAClientPane extends GridPane {
             for (String fileName: fileList) {
                 listArea.appendText(fileName + "\n");
             }
-            serverArea.appendText(responseCode + "List Successful");
+            serverArea.appendText(responseCode + " List Successful\n");
         } else {
-            serverArea.appendText(response);
+            serverArea.appendText(response + "\n");
         }
     }
 
@@ -111,7 +111,8 @@ public class BUKAClientPane extends GridPane {
     }
 
     private void logOut() {
-
+        String response = clientHandler.sendCommand("LOGOUT");
+        serverArea.appendText(response);
     }
 
 }
