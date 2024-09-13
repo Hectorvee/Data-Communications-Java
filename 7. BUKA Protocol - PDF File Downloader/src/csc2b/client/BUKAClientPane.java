@@ -8,8 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class BUKAClientPane extends GridPane //You may change the JavaFX pane layout
-{
+public class BUKAClientPane extends GridPane {
     // GUI Elements
     private TextField nameField;
     private TextField passField;
@@ -26,9 +25,6 @@ public class BUKAClientPane extends GridPane //You may change the JavaFX pane la
     private String[] fileList;
 
     public BUKAClientPane() {
-	//Create client connection
-	//Create buttons for each command
-	//Use buttons to send commands
         clientHandler = new BUKAClientHandler();
         nameField = new TextField();
         passField = new TextField();
@@ -90,7 +86,24 @@ public class BUKAClientPane extends GridPane //You may change the JavaFX pane la
     }
 
     private void requestFileList() {
+        if (!isLogin) {
+            serverArea.appendText("Please login first\n");
+            return;
+        }
 
+        String response = clientHandler.sendCommand("LIST");
+        // response example: 200 1 file1|2 file2|3 file3
+        String responseCode = response.split(" ", 2)[0];
+        String responseMsg = response.split(" ", 2)[1];
+        if (responseCode.equals("200")) {
+            fileList = responseMsg.split("\\|");
+            for (String fileName: fileList) {
+                listArea.appendText(fileName + "\n");
+            }
+            serverArea.appendText(responseCode + "List Successful");
+        } else {
+            serverArea.appendText(response);
+        }
     }
 
     private void requestFile() {

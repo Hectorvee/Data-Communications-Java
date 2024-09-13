@@ -17,6 +17,5 @@ public class Client extends Application {
         primaryStage.setTitle("BUKAH");
         primaryStage.setScene(scene);
         primaryStage.show();
-				
 	}
 }
