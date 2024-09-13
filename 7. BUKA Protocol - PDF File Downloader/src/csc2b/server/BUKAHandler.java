@@ -6,8 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BUKAHandler implements Runnable
-{
+public class BUKAHandler implements Runnable {
     public BUKAHandler(Socket newConnectionToClient)
     {	
 	//Bind streams
