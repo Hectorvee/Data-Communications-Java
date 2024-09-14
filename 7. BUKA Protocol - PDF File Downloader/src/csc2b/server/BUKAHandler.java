@@ -38,25 +38,25 @@ public class BUKAHandler implements Runnable {
 					String password = command.split(" ")[2];
 
 					if (matchUser(username, password)) {
-						out.println(statusCommand(200, "Login Successful\n"));
+						out.println("200 Login Successful");
 					} else {
-						out.println(statusCommand(500, "Login Unsuccessful\n"));
+						out.println("500 Login Unsuccessful");
 					}
 
 				} else if (command.startsWith("LIST")) {
-					String response = statusCommand(200, String.join("|", getFileList()));
-					out.println(response + "\n");
+					String response = "200 " + String.join("|", getFileList());
+					out.println(response);
 				} else if (command.startsWith("PDFRET")) {
 					// Code for retrieving
 				} else {
-					out.println("400 Unknown command\n");
+					out.println("400 Unknown command");
 				}
 
 				out.flush();
 				command = in.readLine().trim();
 			}
 
-			out.println(statusCommand(200, " Logout successful\n"));
+			out.println("200 Logout successful");
 
 
         } catch (IOException e) {
@@ -148,8 +148,4 @@ public class BUKAHandler implements Runnable {
     	}
     	return result;
     }
-
-	private String statusCommand(int errorCode, String message) {
-		return errorCode + " " + message;
-	}
 }

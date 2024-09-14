@@ -112,7 +112,7 @@ public class BUKAClientPane extends GridPane {
 
     private void logOut() {
         String response = clientHandler.sendCommand("LOGOUT");
-        serverArea.appendText(response);
+        serverArea.appendText(response + "\n");
     }
 
 }

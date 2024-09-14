@@ -9,7 +9,7 @@ public class BUKAClientHandler {
 
     // Attributes
     private InetAddress host;
-    private final int PORT = 2018;
+    private final int PORT = 2024;
     private Socket socket;
     private PrintWriter out;    // Output stream to send data to the server
     private BufferedReader in;  // Input stream to receive data from the server

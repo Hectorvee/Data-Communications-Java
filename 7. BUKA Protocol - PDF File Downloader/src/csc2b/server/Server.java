@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class Server {
     private static ServerSocket serverSocket;
-    private static final int PORT = 2018;
+    private static final int PORT = 2024;
 
     public static void main(String[] argv) {
 	//Setup server socket and pass on handling of request
