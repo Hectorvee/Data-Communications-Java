@@ -19,11 +19,11 @@ REM Paths for JDK
 REM Remember to change JAVA_HOME to the correct path on your system
 echo Change JAVA_HOME path
 
-set JAVA_HOME=C:\jdk-17
+set JAVA_HOME=C:\jdk-21
 set PATH=%JAVA_HOME%\bin;%PATH%
 REM Paths for JavaFX
 set USE_JAVAFX=true
-set JAVAFX_HOME=C:\javafx-17
+set JAVAFX_HOME=C:\javafx-sdk-21
 set JAVAFX_MODULES=javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media
 set JAVAFX_ARGS=
 if %USE_JAVAFX%==true (set JAVAFX_ARGS=--module-path %JAVAFX_HOME%\lib --add-modules=%JAVAFX_MODULES%)

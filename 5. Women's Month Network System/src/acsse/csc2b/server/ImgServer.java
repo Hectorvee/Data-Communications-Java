@@ -38,36 +38,36 @@ public class ImgServer {
             BufferedReader in = new BufferedReader(new InputStreamReader(link.getInputStream()));    // Input stream to receive data from the client
             PrintWriter out = new PrintWriter(link.getOutputStream(), true);    // Output stream to send data to the client
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(link.getOutputStream()));    // Output stream to send files to the client
-            DataInputStream dis = new DataInputStream(new BufferedInputStream(link.getInputStream()));   // Input stream to receive files from the client
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(link.getInputStream()));// Input stream to receive files from the client
 
-                int numMessages = 0;
-                String message = in.readLine().trim();
+            int numMessages = 0;
+            String message = in.readLine().trim();
 
-                while (!message.equals("***CLOSE***")) {
-                    System.out.println("Message received");
+            while (!message.equals("***CLOSE***")) {
+                System.out.println("Message received");
 
-                    if (message.startsWith("LIST")) {
-                        // Code for listing images...
-                        out.println("Message " + numMessages + ": " + listImages());
-                        numMessages++;
-                    } else if (message.startsWith("UP")) {
-                        // Code for uploading image...
-                        uploadImage(message, out, dis, numMessages);
-                        numMessages++;
+                if (message.startsWith("LIST")) {
+                    // Code for listing images...
+                    out.println("Message " + numMessages + ": " + listImages());
+                    numMessages++;
+                } else if (message.startsWith("UP")) {
+                    // Code for uploading image...
+                    uploadImage(message, out, dis, numMessages);
+                    numMessages++;
 
-                    } else if (message.startsWith("DOWN")) {
-                        // Code for downloading image...
-                        downloadImage(message, out, dos, numMessages);
+                } else if (message.startsWith("DOWN")) {
+                    // Code for downloading image...
+                    downloadImage(message, out, dos, numMessages);
 
 
-                    } else {
-                        out.println("Message " + numMessages + ": " + "Command error");
-                    }
-
-                    // Get the next message
-                    message = in.readLine().trim();
+                } else {
+                    out.println("Message " + numMessages + ": " + "Command error");
                 }
-                out.println(numMessages + " messages received");
+
+                // Get the next message
+                message = in.readLine().trim();
+            }
+            out.println(numMessages + " messages received");
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
