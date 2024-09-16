@@ -2,10 +2,7 @@ package csc2b.client;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -18,7 +15,7 @@ import javafx.scene.layout.GridPane;
 public class BUKAClientPane extends GridPane {
     // GUI Elements
     private TextField nameField;
-    private TextField passField;
+    private PasswordField passField;
     private TextField idField;
     private TextArea listArea;
     private TextArea serverArea;
@@ -38,7 +35,7 @@ public class BUKAClientPane extends GridPane {
     public BUKAClientPane() {
         clientHandler = new BUKAClientHandler();
         nameField = new TextField();
-        passField = new TextField();
+        passField = new PasswordField();
         idField = new TextField();
         listArea = new TextArea();
         serverArea = new TextArea();
@@ -202,7 +199,7 @@ public class BUKAClientPane extends GridPane {
      * @param imageID The image ID to get the filename for.
      * @return The filename associated with the image ID.
      */
-    public String getFilename(String imageID) {
+    private String getFilename(String imageID) {
 
         for (String file: fileList) {
             if (imageID.equals(file.split(" ")[0])) return file.split(" ", 2)[1];
