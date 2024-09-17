@@ -49,7 +49,7 @@ public class ZEDEMHandler implements Runnable {
                     out.println("JA " + joinedList);
 
                 } else if (command.startsWith("ZEDEMGET")) {
-                    System.out.println("Get file");
+                    out.println(sendFile(command));
                 } else {
                     out.println("NEE invalid command");
                 }
@@ -118,7 +118,7 @@ public class ZEDEMHandler implements Runnable {
             while (scan.hasNext()) {
                 line = scan.nextLine();
                 if (line.split(" ")[0].equals(ID)) {
-                    result = line.split(" ")[1];
+                    result = line.split(" ", 2)[1];
                     break;
                 }
             }
@@ -128,5 +128,43 @@ public class ZEDEMHandler implements Runnable {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    private String sendFile(String command) {
+        String requestStatus = "";
+
+        String id = command.split(" ")[1];
+        String fileName = idToFile(id);
+        File fileToSend = new File("data/server/" + fileName);
+
+        if (fileToSend.exists()) {
+
+            try {
+                // Send the file size
+                out.println(fileToSend.length());
+                out.flush();
+
+                // Send file to the client
+                FileInputStream fis = new FileInputStream(fileToSend);
+                byte[] buffer = new byte[2048];
+                int bytesRead;
+
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    dos.write(buffer, 0, bytesRead);
+                    dos.flush();
+                }
+
+                fis.close();
+                requestStatus = "JA Download Successful";
+
+            } catch (IOException e) {
+                requestStatus = "NEE Download Unsuccessful: " + e.getMessage();
+            }
+        } else {
+            requestStatus = "JA File does not exist";
+        }
+
+
+        return requestStatus;
     }
 }

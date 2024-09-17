@@ -103,6 +103,7 @@ public class ZEDEMClientPane extends GridPane {
             return;
         }
 
+        responseArea.appendText(response + "\n");
         isLogin = true;
         listFile();
     }
@@ -122,7 +123,7 @@ public class ZEDEMClientPane extends GridPane {
                 listArea.appendText(file + "\n");
             }
 
-            responseArea.appendText("Ja List Successful");
+            responseArea.appendText("Ja List Successful\n");
         } else {
             responseArea.appendText(response + "\n");
         }
@@ -130,10 +131,61 @@ public class ZEDEMClientPane extends GridPane {
     }
 
     private void requestFile() {
+        // Check if is logged in
+        if (!isLogin) {
+            responseArea.appendText("Login first.\n");
+            return;
+        }
+
+        // Check if fields are not empty
+        if (idField.getText().isEmpty()) {
+            responseArea.appendText("Enter File ID first.\n");
+            return;
+        }
+
+        String fileId = idField.getText().trim();
+        // Check if ID is available from the mp3List
+        if (!checkFileId(fileId)) {
+            responseArea.appendText("No file with ID " + fileId);
+            return;
+        }
+
+        // Send command
+        String response = clientHandler.sendCommand("ZEDEMGET " + fileId);
+
+        // Get filename
+        String fileName = getFileName(fileId);
+
+        // Download the file
+        String requestStatus = clientHandler.requestFile(response, fileName);
+
+        responseArea.appendText(requestStatus + "\n");
 
     }
 
     private void logOut() {
 
+    }
+
+    private boolean checkFileId(String id) {
+        for (String file: mp3List) {
+            if (id.equals(file.split(" ")[0])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private String getFileName(String fileId) {
+        String name = "";
+
+        for (String file: mp3List) {
+            if (fileId.equals(file.split(" ")[0])) {
+                name = file.split(" ", 2)[1];
+            }
+        }
+
+        return name;
     }
 }

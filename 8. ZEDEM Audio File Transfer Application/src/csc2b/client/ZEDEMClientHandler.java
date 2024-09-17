@@ -38,4 +38,39 @@ public class ZEDEMClientHandler {
 
         return response;
     }
+
+    public String requestFile(String response, String fileName) {
+        String requestStatus = "";
+
+        // Send receive file
+        try {
+            // Read the file size
+            int fileSize = Integer.parseInt(response);
+
+            // Create file stream
+            File fileToDownload = new File("data/client/" + fileName);
+            FileOutputStream fos = new FileOutputStream(fileToDownload);
+
+            // Read the file
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            int totalBytes = 0;
+
+            while (totalBytes!=fileSize) {
+                bytesRead = dis.read(buffer, 0, buffer.length);
+                fos.write(buffer, 0, bytesRead);
+                fos.flush();
+                totalBytes += bytesRead;
+            }
+
+            fos.close();
+            requestStatus = in.readLine();
+
+        } catch (IOException e) {
+            requestStatus = "Request Error: " + e.getMessage();
+        }
+
+
+        return requestStatus;
+    }
 }
