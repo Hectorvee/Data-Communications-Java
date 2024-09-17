@@ -64,6 +64,16 @@ This folder contains a project that implements a PDF file downloader using the c
 - Server-side file management and multi-client handling
 - User interface for client interactions (BUKAClientFrame)
 
+### 8. **ZEDEM Protocol - Audio File Transfer Application**
+
+This folder contains a project that implements an audio file transfer application using the custom ZEDEM protocol. Key aspects include:
+
+- **Client-server communication** over port 2021
+- **Client login authentication** using the `BONJOUR` command
+- **Listing available audio files** (`PLAYLIST`) and downloading them by ID (`ZEDEMGET`)
+- **Server-side file management** and multi-client handling
+- **User interface** for client interactions (`ZEDEMClient` and `ZEDEMClientPane`)
+
 ## Getting Started
 
 To get started with the projects in this repository:

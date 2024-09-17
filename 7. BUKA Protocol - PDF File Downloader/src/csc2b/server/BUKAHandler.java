@@ -135,7 +135,7 @@ public class BUKAHandler implements Runnable {
     private ArrayList<String> getFileList() {
 		ArrayList<String> result = new ArrayList<String>();
 		//Code to add list text file contents to the arraylist.
-		File lstFile = new File("data/server/pdfList.txt");
+		File lstFile = new File("data/server/PdfList.txt");
 		try
 		{
 			Scanner scan = new Scanner(lstFile);
